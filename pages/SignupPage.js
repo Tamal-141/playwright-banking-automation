@@ -1,6 +1,4 @@
-const { expect } = require('@playwright/test');
-
-exports.SignupPage = class SignupPage {
+export class SignupPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -9,11 +7,9 @@ exports.SignupPage = class SignupPage {
     this.firstNameInput = page.getByRole('textbox', { name: 'First Name' });
     this.lastNameInput = page.getByRole('textbox', { name: 'Last Name' });
     this.usernameInput = page.getByRole('textbox', { name: 'Username' });
-    
-    // Playwright needs exact locators when role descriptions match multiple
+    // Playwright needs exact locators when role descriptions match multiple elements
     this.passwordInput = page.locator('[data-test="signup-password"]').getByRole('textbox', { name: 'Password' });
     this.confirmPasswordInput = page.getByRole('textbox', { name: 'Confirm Password' });
-    
     this.submitButton = page.locator('[data-test="signup-submit"]');
   }
 
@@ -27,7 +23,6 @@ exports.SignupPage = class SignupPage {
 
   async submitSignup() {
     await this.submitButton.click();
-    // After signup, the app redirects back to the signin page
     await this.page.waitForURL('**/signin');
   }
-};
+}

@@ -1,6 +1,6 @@
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 
-exports.LoginPage = class LoginPage {
+export class LoginPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -27,7 +27,6 @@ exports.LoginPage = class LoginPage {
   }
 
   async clickSignUp() {
-    // Retry block for flaky React hydration clicks
     await expect(async () => {
       await this.signUpLink.click();
       await expect(this.page).toHaveURL(/signup/);
@@ -37,4 +36,4 @@ exports.LoginPage = class LoginPage {
   async verifyErrorIsVisible() {
     await expect(this.errorMessage).toBeVisible({ timeout: 5000 });
   }
-};
+}
