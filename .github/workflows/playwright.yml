@@ -36,7 +36,8 @@ jobs:
     - name: Install Banking App Dependencies
       run: |
         cd cypress-realworld-app
-        yarn install --frozen-lockfile
+        yarn install --network-timeout 1000000 
+
 
     - name: Install Playwright Dependencies
       run: npm ci

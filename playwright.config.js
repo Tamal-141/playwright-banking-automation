@@ -74,11 +74,12 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run start',
-    cwd: '../cypress-realworld-app',
+    // We use a dynamic path: local (../) vs CI (./)
+    command: 'yarn start',
+    cwd: process.env.CI ? './cypress-realworld-app' : '../cypress-realworld-app',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120000, // Wait up to 2 minutes for the full-stack boot
+    timeout: 180000, // 3 minutes - full stacks are heavy!
   },
 });
 
