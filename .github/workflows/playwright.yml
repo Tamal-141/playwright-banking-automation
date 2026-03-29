@@ -46,8 +46,8 @@ jobs:
       run: npx playwright install --with-deps chromium
 
     - name: Run Playwright Tests
-      # Playwright will start the bank app automatically via webServer config
-      run: npx playwright test tests/auth.spec.js
+      # This will now run BOTH auth.spec.js (UI) and api.spec.js (Engine)
+      run: npx playwright test
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
