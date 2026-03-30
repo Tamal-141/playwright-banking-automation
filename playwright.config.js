@@ -77,7 +77,7 @@ export default defineConfig({
     // We use a dynamic path: local (../) vs CI (./)
     command: 'yarn start',
     cwd: process.env.CI ? './cypress-realworld-app' : '../cypress-realworld-app',
-    url: 'http://localhost:3000',
+    url: 'http://localhost:3001',
     reuseExistingServer: !process.env.CI,
     timeout: 180000, // 3 minutes - full stacks are heavy!
   },
