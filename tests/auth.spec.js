@@ -40,7 +40,9 @@ test.describe('Authentication & Onboarding (POM Pattern)', () => {
     });
 
     await test.step('Logout from the application', async () => {
+      await expect(page).not.toHaveURL(/.*\/signin/);
       await onboardingPage.logout();
+      await expect(page).toHaveURL(/.*\/signin/);
     });
 
     await test.step('Verify Re-Login works for the created account', async () => {
