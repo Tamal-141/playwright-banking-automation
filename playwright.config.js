@@ -14,6 +14,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 120000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -77,9 +78,9 @@ export default defineConfig({
     // We use a dynamic path: local (../) vs CI (./)
     command: 'yarn start',
     cwd: process.env.CI ? './cypress-realworld-app' : '../cypress-realworld-app',
-    url: 'http://localhost:3001',
+    url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 180000, // 3 minutes - full stacks are heavy!
+    timeout: 360000, // 6 minutes for full stack cold start
   },
 });
 

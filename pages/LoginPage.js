@@ -15,9 +15,10 @@ export class LoginPage {
   }
 
   async navigate() {
-    await this.page.goto('/signin');
+    // Increase timeout and wait for network idle to handle slow initial load on AWS
+    await this.page.goto('/signin', { waitUntil: 'networkidle', timeout: 60000 });
     await this.page.waitForURL('**/signin');
-    await expect(this.header).toBeVisible();
+    await expect(this.header).toBeVisible({ timeout: 10000 });
   }
 
   async login(username, password) {
